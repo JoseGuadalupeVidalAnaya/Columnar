@@ -13,7 +13,7 @@ public class Main extends Application
     public void start(Stage primaryStage) throws Exception
     {
         Parent root = FXMLLoader.load(getClass().getResource("Ventana.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Columnar");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
