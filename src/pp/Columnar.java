@@ -85,4 +85,3 @@ public class Columnar
         return aux;
     }
 }
-//aux=aux+mensaje.charAt(clave2[i]*cont*(mensaje.length()/clave2.length));
