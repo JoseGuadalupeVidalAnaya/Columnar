@@ -39,56 +39,50 @@ public class Columnar
             }
         }
     }
-
-    void setMensaje(String s)
+    public void setMensaje(String mensaje)
     {
-        mensaje = s.replaceAll(" ", "");
-        while ((mensaje.length() % clave2.length) != 0)
-            mensaje = mensaje + "x";
+        mensaje=mensaje.replaceAll(" ","_");
+        while(mensaje.length()%clave2.length!=0)
+        {
+            mensaje=mensaje+"_";
+        }
+        this.mensaje=mensaje;
     }
-
-    String cifrar()
+    public String cifrar()
     {
-        String c = "";
-        String s[] = dividir();
-        String aux[][] = new String[s.length][clave.length];
-        for (int i = 0; i < s.length; i++)
+        String aux="";
+        int cont=0;
+        for (int i = 0; i <clave2.length; i++)
         {
-            for (int j = 0; j < s[i].length(); j++)
-                aux[i][clave2[j]] = s[i].charAt(j) + "";
+            if(clave2[i]==cont)
+            {
+                for (int j=i;j<mensaje.length();j=j+clave2.length)
+                {
+                    aux=aux+mensaje.charAt(j);
+                }
+                i=-1;
+                cont++;
+                aux=aux+" ";
+            }
         }
-
-        for (String[] aux1 : aux)
-        {
-            for (String aux11 : aux1)
-                c = c + aux11;
-        }
-        return c;
+        return aux;
     }
-
-    String[] dividir()
+    public void setMensaje2(String s)
     {
-        String s[] = new String[mensaje.length() / clave.length];
-        for (int i = 0; i < s.length; i++)
-            s[i] = mensaje.substring(clave.length * i, i * clave.length + clave.length);
-        return s;
+        mensaje=s.replaceAll(" ","");
+        mensaje=mensaje.replaceAll("_"," ");
     }
-
-    String decifrar()
+    public String decifrar()
     {
-        String c = "";
-        String s[] = dividir();
-        String aux[][] = new String[s.length][clave.length];
-        for (int i = 0; i < aux.length; i++)
+        String aux="";
+        for (int i = 0; i < mensaje.length()/clave2.length; i++)
         {
-            for (int j = 0; j < aux[i].length; j++)
-                aux[i][j] = s[i].charAt(clave2[j]) + "";
+            for (int j=0;j<clave2.length;j++)
+            {
+               aux=aux+mensaje.charAt(clave2[j]*(mensaje.length()/clave2.length)+i);
+            }
         }
-        for (String[] aux1 : aux)
-        {
-            for (String aux11 : aux1)
-                c = c + aux11;
-        }
-        return c;
+        return aux;
     }
 }
+//aux=aux+mensaje.charAt(clave2[i]*cont*(mensaje.length()/clave2.length));

@@ -57,7 +57,7 @@ public class Controlador implements Initializable
         else
         {
             c.setClave(clave.getText());
-            c.setMensaje(men.getText());
+            c.setMensaje2(men.getText());
             out.setText(c.decifrar());
         }
     }
