@@ -1,27 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pp;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
-/**
- * @author jose
- */
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class Controlador implements Initializable
 {
-
     Columnar c;
     @FXML
-    TextField men, clave, out,alfa;
+    TextField men, clave, out, alfa;
 
     @FXML
     void metodoCifrar(ActionEvent e)
@@ -40,7 +31,7 @@ public class Controlador implements Initializable
         }
         else
         {
-            c.alfa=alfa.getText();
+            c.alfa = alfa.getText();
             c.setClave(clave.getText());
             c.setMensaje(men.getText());
             out.setText(c.cifrar());
@@ -61,7 +52,7 @@ public class Controlador implements Initializable
         }
         else
         {
-            c.alfa=alfa.getText();
+            c.alfa = alfa.getText();
             c.setClave(clave.getText());
             c.setMensaje(men.getText());
             out.setText(c.decifrar());
@@ -74,19 +65,19 @@ public class Controlador implements Initializable
         c = new Columnar();
         clave.setOnKeyTyped(e ->
         {
-            if (!(alfa.getText()+" ").contains(e.getCharacter()))
+            if (!(alfa.getText() + " ").contains(e.getCharacter()))
             {
                 e.consume();
             }
         });
-        men.setOnKeyTyped(e->
+        men.setOnKeyTyped(e ->
         {
-            if (!(alfa.getText()+" ").contains(e.getCharacter()))
+            if (!(alfa.getText() + " ").contains(e.getCharacter()))
             {
                 e.consume();
             }
         });
-        alfa.setOnKeyTyped(e->
+        alfa.setOnKeyTyped(e ->
         {
             if (alfa.getText().contains(e.getCharacter()))
             {
@@ -94,5 +85,4 @@ public class Controlador implements Initializable
             }
         });
     }
-
 }

@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pp;
 
-/**
- *
- * @author jose
- */
 public class Columnar
 {
-
     char clave[];
     int clave2[];
     String mensaje;
@@ -19,7 +9,7 @@ public class Columnar
 
     Columnar()
     {
-        alfa="0123456789AaBbCcDdEeFfGgHhIiJjlkLlMmNnÑñOoPpQqRrSsTtUuVvWwXxYyZz";
+        alfa = "0123456789AaBbCcDdEeFfGgHhIiJjlkLlMmNnÑñOoPpQqRrSsTtUuVvWwXxYyZz";
     }
 
     public void setClave(String c)
@@ -27,7 +17,6 @@ public class Columnar
         clave = c.replaceAll(" ", "").toCharArray();
         clave2 = new int[clave.length];
         int cont = 0;
-
         for (int i = 0; i < alfa.length(); i++)
         {
             for (int j = 0; j < clave.length; j++)
@@ -62,7 +51,6 @@ public class Columnar
                 aux[i][clave2[j]] = s[i].charAt(j) + "";
             }
         }
-
         for (String[] aux1 : aux)
         {
             for (String aux11 : aux1)
