@@ -6,6 +6,7 @@
 package pp;
 
 /**
+ *
  * @author jose
  */
 public class Columnar
@@ -18,7 +19,7 @@ public class Columnar
 
     Columnar()
     {
-        alfa = "0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnÑñOoPpQqRrSsTtUuVvWwXxYyZz";
+        alfa="0123456789AaBbCcDdEeFfGgHhIiJjlkLlMmNnÑñOoPpQqRrSsTtUuVvWwXxYyZz";
     }
 
     public void setClave(String c)
@@ -39,49 +40,69 @@ public class Columnar
             }
         }
     }
-    public void setMensaje(String mensaje)
+
+    void setMensaje(String s)
     {
-        mensaje=mensaje.replaceAll(" ","_");
-        while(mensaje.length()%clave2.length!=0)
+        mensaje = s.replaceAll(" ", "");
+        while ((mensaje.length() % clave2.length) != 0)
         {
-            mensaje=mensaje+"_";
+            mensaje = mensaje + "x";
         }
-        this.mensaje=mensaje;
     }
-    public String cifrar()
+
+    String cifrar()
     {
-        String aux="";
-        int cont=0;
-        for (int i = 0; i <clave2.length; i++)
+        String c = "";
+        String s[] = dividir();
+        String aux[][] = new String[s.length][clave.length];
+        for (int i = 0; i < s.length; i++)
         {
-            if(clave2[i]==cont)
+            for (int j = 0; j < s[i].length(); j++)
             {
-                for (int j=i;j<mensaje.length();j=j+clave2.length)
-                {
-                    aux=aux+mensaje.charAt(j);
-                }
-                i=-1;
-                cont++;
-                aux=aux+" ";
+                aux[i][clave2[j]] = s[i].charAt(j) + "";
             }
         }
-        return aux;
-    }
-    public void setMensaje2(String s)
-    {
-        mensaje=s.replaceAll(" ","");
-        mensaje=mensaje.replaceAll("_"," ");
-    }
-    public String decifrar()
-    {
-        String aux="";
-        for (int i = 0; i < mensaje.length()/clave2.length; i++)
+
+        for (String[] aux1 : aux)
         {
-            for (int j=0;j<clave2.length;j++)
+            for (String aux11 : aux1)
             {
-               aux=aux+mensaje.charAt(clave2[j]*(mensaje.length()/clave2.length)+i);
+                c = c + aux11;
             }
         }
-        return aux;
+        return c;
+    }
+
+    String[] dividir()
+    {
+        String s[] = new String[mensaje.length() / clave.length];
+        for (int i = 0; i < s.length; i++)
+        {
+            s[i] = mensaje.substring(clave.length * i, i * clave.length
+                    + clave.length);
+        }
+        return s;
+    }
+
+    String decifrar()
+    {
+        String c = "";
+        String s[] = dividir();
+        String aux[][] = new String[s.length][clave.length];
+        for (int i = 0; i < aux.length; i++)
+        {
+            for (int j = 0; j < aux[i].length; j++)
+            {
+                aux[i][j] = s[i].charAt(clave2[j]) + "";
+            }
+        }
+        for (String[] aux1 : aux)
+        {
+            for (String aux11 : aux1)
+            {
+                c = c + aux11;
+            }
+        }
+        return c;
     }
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Columnar:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Columnar_jar</output-path>
+    <root id="archive" name="Columnar.jar">
+      <element id="module-output" name="Columnar" />
+    </root>
+  </artifact>
+</component>

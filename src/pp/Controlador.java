@@ -21,7 +21,7 @@ public class Controlador implements Initializable
 
     Columnar c;
     @FXML
-    TextField men, clave, out;
+    TextField men, clave, out,alfa;
 
     @FXML
     void metodoCifrar(ActionEvent e)
@@ -34,8 +34,13 @@ public class Controlador implements Initializable
         {
             out.setText("Ingrese la clave para cifrar");
         }
+        else if (alfa.getText().isEmpty())
+        {
+            out.setText("Ingrese el alfabeto");
+        }
         else
         {
+            c.alfa=alfa.getText();
             c.setClave(clave.getText());
             c.setMensaje(men.getText());
             out.setText(c.cifrar());
@@ -56,8 +61,9 @@ public class Controlador implements Initializable
         }
         else
         {
+            c.alfa=alfa.getText();
             c.setClave(clave.getText());
-            c.setMensaje2(men.getText());
+            c.setMensaje(men.getText());
             out.setText(c.decifrar());
         }
     }
@@ -68,7 +74,21 @@ public class Controlador implements Initializable
         c = new Columnar();
         clave.setOnKeyTyped(e ->
         {
-            if (!c.alfa.contains(e.getCharacter()))
+            if (!(alfa.getText()+" ").contains(e.getCharacter()))
+            {
+                e.consume();
+            }
+        });
+        men.setOnKeyTyped(e->
+        {
+            if (!(alfa.getText()+" ").contains(e.getCharacter()))
+            {
+                e.consume();
+            }
+        });
+        alfa.setOnKeyTyped(e->
+        {
+            if (alfa.getText().contains(e.getCharacter()))
             {
                 e.consume();
             }
